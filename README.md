@@ -38,7 +38,13 @@ Python, Django, SQLite3, HTML5, CSS3, Bootstrap 5, Gunicorn, WhiteNoise, Render
 ![Ticket list](screenshots/ticket-list.png)
 
 ## Run Locally
+
+## Run Tests
 ```bash
+python manage.py test
+```
+The suite covers all 9 impact/urgency combinations of the priority matrix, level routing, escalation limits, ticket history, role-based access, search and dashboard counts.
+
 git clone [https://github.com/rprabash7/it-helpdesk-incident-management.git](https://github.com/rprabash7/it-helpdesk-incident-management.git)
 cd it-helpdesk-incident-management
 python -m venv .venv
