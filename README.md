@@ -43,7 +43,7 @@ Open http://127.0.0.1:8000/
 `seed_tickets` creates 25 sample tickets and a `demo_user` account for testing.
 
 ## Screenshots
-Add screenshots here (ticket list, ticket detail, history).
+![alt text](image.png)
 
 ## Author
 Prabash R
