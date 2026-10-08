@@ -38,13 +38,7 @@ Python, Django, SQLite3, HTML5, CSS3, Bootstrap 5, Gunicorn, WhiteNoise, Render
 ![Ticket list](screenshots/ticket-list.png)
 
 ## Run Locally
-
-## Run Tests
 ```bash
-python manage.py test
-```
-The suite covers all 9 impact/urgency combinations of the priority matrix, level routing, escalation limits, ticket history, role-based access, search and dashboard counts.
-
 git clone [https://github.com/rprabash7/it-helpdesk-incident-management.git](https://github.com/rprabash7/it-helpdesk-incident-management.git)
 cd it-helpdesk-incident-management
 python -m venv .venv
@@ -58,6 +52,12 @@ python manage.py runserver
 Open http://127.0.0.1:8000/
 
 `seed_tickets` creates 25 sample tickets and a `demo_user` account for testing.
+
+## Run Tests
+```bash
+python manage.py test
+```
+The suite has 13 tests covering all 9 impact/urgency combinations of the priority matrix, level routing, escalation limits, ticket history, role-based access, search and dashboard counts.
 
 ## Author
 Prabash R
