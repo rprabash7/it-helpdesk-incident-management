@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="col-md-7 mx-auto card card-body">
+  <h4>Log a new incident</h4>
+  <form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="mb-3">
+        <label class="form-label">{{ field.label }}</label>
+        {{ field }}
+        {{ field.errors }}
+      </div>
+    {% endfor %}
+    <button class="btn btn-primary">Submit</button>
+    <a class="btn btn-secondary" href="{% url 'ticket_list' %}">Cancel</a>
+  </form>
+</div>
+{% endblock %}

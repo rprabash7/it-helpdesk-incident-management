@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+  <div class="col-md-7">
+    <div class="card card-body mb-3">
+      <h4>{{ ticket.ticket_no }} - {{ ticket.title }}</h4>
+      <p>{{ ticket.description|linebreaks }}</p>
+      <ul class="list-unstyled mb-0">
+        <li><b>Category:</b> {{ ticket.category }}</li>
+        <li><b>Impact:</b> {{ ticket.get_impact_display }} | <b>Urgency:</b> {{ ticket.get_urgency_display }}</li>
+        <li><b>Priority:</b> {{ ticket.priority }} | <b>Support level:</b> {{ ticket.support_level }}</li>
+        <li><b>Status:</b> {{ ticket.get_status_display }}</li>
+        <li><b>Raised by:</b> {{ ticket.created_by.username }} on {{ ticket.created_at|date:"d M Y H:i" }}</li>
+      </ul>
+    </div>
+
+    {% if user.is_staff %}
+    <div class="card card-body mb-3">
+      <h6>Support actions</h6>
+      <form method="post" class="mb-2">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="status">
+        <div class="input-group mb-2">
+          <select name="status" class="form-select">
+            {% for value, label in status_choices %}
+              <option value="{{ value }}" {% if ticket.status == value %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+          </select>
+          <button class="btn btn-primary">Update status</button>
+        </div>
+        <input class="form-control" name="comment" placeholder="Comment (optional)">
+      </form>
+      <form method="post">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="escalate">
+        <input class="form-control mb-2" name="comment" placeholder="Reason for escalation">
+        <button class="btn btn-warning">Escalate to next level</button>
+      </form>
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="col-md-5">
+    <div class="card card-body">
+      <h6>Ticket history</h6>
+      {% for h in history %}
+        <div class="border-bottom py-2">
+          <b>{{ h.action }}</b>
+          {% if h.old_value %}: {{ h.old_value }} → {{ h.new_value }}{% elif h.new_value %}: {{ h.new_value }}{% endif %}
+          <div class="small text-muted">{{ h.changed_by.username|default:"system" }} • {{ h.timestamp|date:"d M Y H:i" }}</div>
+          {% if h.comment %}<div class="small">{{ h.comment }}</div>{% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<a class="btn btn-link mt-3" href="{% url 'ticket_list' %}">← Back</a>
+{% endblock %}
