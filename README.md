@@ -2,7 +2,13 @@
 
 A Django-based service desk portal where users log IT incidents (hardware, software, network) and support staff track, prioritise, escalate and resolve them.
 
-**Live demo:** <mee-live-url>
+**Live demo:** https://it-helpdesk-incident-management.onrender.com/
+
+> Hosted on Render's free tier, so the first load after inactivity can take about a minute. Sample data is re-created automatically on restart.
+
+## Demo Login
+- Regular user: `demo_user` / `Demo@12345` (can log tickets and view only their own)
+- Support staff (admin) credentials are private. Run locally to explore the support view.
 
 ## Features
 - User registration and login
@@ -26,6 +32,11 @@ A Django-based service desk portal where users log IT incidents (hardware, softw
 ## Tech Stack
 Python, Django, SQLite3, HTML5, CSS3, Bootstrap 5, Gunicorn, WhiteNoise, Render
 
+## Screenshots
+
+### Dashboard and ticket list
+![Ticket list](screenshots/ticket-list.png)
+
 ## Run Locally
 ```bash
 git clone [https://github.com/rprabash7/it-helpdesk-incident-management.git](https://github.com/rprabash7/it-helpdesk-incident-management.git)
@@ -41,9 +52,6 @@ python manage.py runserver
 Open http://127.0.0.1:8000/
 
 `seed_tickets` creates 25 sample tickets and a `demo_user` account for testing.
-
-## Screenshots
-c:\Prabash\Projects\it_helpdesk\image.png
 
 ## Author
 Prabash R
