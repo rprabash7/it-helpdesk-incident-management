@@ -26,8 +26,11 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument("--count", type=int, default=25)
+        parser.add_argument("--if-empty", action="store_true")
 
     def handle(self, *args, **options):
+        if options["if_empty"] and Ticket.objects.exists():
+            return
         random.seed(7)
         User = get_user_model()
         user, created = User.objects.get_or_create(username="demo_user")
